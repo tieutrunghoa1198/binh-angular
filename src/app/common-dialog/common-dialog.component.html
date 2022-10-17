@@ -1,1 +1,20 @@
-<p>common-dialog works!</p>
+<main class="">
+  <div class="title">
+    <div class="text-capitalize fw-bold text-center"
+      style="height: 40px">
+      {{data.title}}
+    </div>
+  </div>
+  <div class="content">
+    <div *ngIf="data.hasButton; else notification">
+      <div class="text-center">{{data.content}}</div>
+      <div class="d-flex justify-content-center">
+        <button class="mx-2 btn btn-primary">{{data.button?.confirm}}</button>
+        <button class="mx-2 btn btn-outline-danger" (click)="onClose()">{{data.button?.cancel}}</button>
+      </div>
+    </div>
+    <ng-template #notification>
+      <div class="text-center">{{data.content}}</div>
+    </ng-template>
+  </div>
+</main>

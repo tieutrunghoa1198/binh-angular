@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
+import {DialogData} from "../app.component";
+import {CommonDialogDataType} from "./types/CommonDialogDataType";
 
 @Component({
   selector: 'app-common-dialog',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CommonDialogComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<CommonDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: CommonDialogDataType,
+  ) {}
 
   ngOnInit(): void {
   }
 
+  onClose() {
+    this.dialogRef.close({ customData: 'hello'});
+  }
 }
